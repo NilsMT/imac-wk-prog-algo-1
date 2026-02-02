@@ -1,54 +1,34 @@
 #include <sil/sil.hpp>
-#include "random.hpp"
+#include <algorithm>
 
 int main()
 {
-    set_random_seed(0);
     sil::Image image{"images/logo.png"};
     
-    int n = 250; //number of glitch (the more the messier)
-    int min_size_x = 10;
-    int min_size_y = 5;
-    int max_size_x = 20;
-    int max_size_y = 10;
+    //lambda exp that turn color into grayscale
+    auto grayscale = [](const glm::vec3 &c){
+        return glm::dot(c, glm::vec3{0.3f, 0.59f, 0.11f});
+    };
 
-    for (int i = 0; i < n; ++i)
+    //sort each column by luminance
+    for (int x{0}; x < image.width(); ++x)
     {
-        //rectangle
-        glm::vec2 rectangle{
-            random_int(min_size_x, max_size_x), 
-            random_int(min_size_y, max_size_y)
-        };
-        //where is r1
-        glm::vec2 pos_r1{
-            random_int(0, image.width() - rectangle.x - 1),
-            random_int(0, image.height() - rectangle.y - 1)
-        };
+        //get column
+        std::vector<glm::vec3> column;
 
-        //where is r2
-        glm::vec2 pos_r2{
-            random_int(0, image.width() - rectangle.x - 1),
-            random_int(0, image.height() - rectangle.y - 1)
-        };
+        //append pixels to column
+        for (int y{0}; y < image.height(); ++y)
+            column.push_back(image.pixel(x, y));
 
-        //swap on image based on base
-        for (int x{0}; x < (image.width()); ++x)
-        {
-            for (int y{0}; y < (image.height()); ++y)
-            {
-                //if in r1 --> swap with equivalent in r2
-                if (x >= pos_r1.x && x < pos_r1.x + rectangle.x && y >= pos_r1.y && y < pos_r1.y + rectangle.y)
-                {
+        //sort column by luminance (worse up, better down)
+        std::sort(column.begin(), column.end(), [&](const glm::vec3 &a, const glm::vec3 &b){
+            return grayscale(a) > grayscale(b);
+        });
 
-                    int sample_x = glm::clamp(static_cast<int>(pos_r2.x) + x, 0, image.width() - 1);
-                    int sample_y = glm::clamp(static_cast<int>(pos_r2.y) + y, 0, image.height() - 1);
-
-
-                    std::swap(image.pixel(x,y),image.pixel(sample_x,sample_y));
-                }
-            }
-        }
+        //write back in the image
+        for (int y{0}; y < image.height(); ++y)
+            image.pixel(x, y) = column[y];
     }
-    
-    image.save("output/glitch.png");
+
+    image.save("output/sorted.png");
 }
