@@ -1,4 +1,41 @@
-# ⭐ Exos
+# Sommaire
+
+- [Exos](#exos)
+    - [⭐ Ne garder que le vert](#-ne-garder-que-le-vert)
+    - [⭐ Échanger les canaux](#-échanger-les-canaux)
+    - [⭐ Noir & Blanc](#-noir--blanc)
+    - [⭐ Négatif](#-négatif)
+    - [⭐ Dégradé](#-dégradé)
+    - [⭐⭐ Miroir](#-miroir)
+    - [⭐⭐ Image bruitée](#-image-bruitée)
+    - [⭐⭐ Rotation de 90°](#-rotation-de-90)
+    - [⭐⭐ RGB split](#-rgb-split)
+    - [⭐⭐ Luminosité](#-luminosité)
+    - [⭐⭐(⭐) Disque](#-disque)
+    - [⭐⭐⭐ Cercle](#-cercle)
+    - [⭐⭐ Animation](#-animation)
+    - [⭐⭐⭐ Rosace](#-rosace)
+    - [⭐⭐ Mosaïque](#-mosaïque)
+    - [⭐⭐⭐⭐ Mosaïque miroir](#-mosaïque-miroir)
+    - [⭐⭐⭐ Glitch](#-glitch)
+    - [⭐⭐⭐ Tri de pixels](#-tri-de-pixels)
+    - [⭐⭐⭐(⭐) Fractale de Mandelbrot](#-fractale-de-mandelbrot)
+    - [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](#-dégradés-dans-lespace-de-couleur-lab)
+    - [⭐⭐⭐(⭐) Tramage](#-tramage)
+    - [⭐⭐⭐(⭐) Normalisation de l'histogramme](#-normalisation-de-lhistogramme)
+    - [⭐⭐⭐⭐ Vortex](#-vortex)
+    - [⭐⭐⭐⭐ Convolutions](#-convolutions)
+    - [⭐ Netteté, Contours, etc.](#-netteté-contours-etc)
+    - [⭐⭐ Filtres séparables](#-filtres-séparables)
+    - [⭐⭐ Différence de gaussiennes](#-différence-de-gaussiennes)
+    - [⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image](#-k-means--trouver-les-couleurs-les-plus-présentes-dans-une-image)
+    - [⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)](#-filtre-de-kuwahara-effet-peinture-à-lhuile)
+    - [⭐⭐⭐⭐⭐⭐ Diamond Square](#-diamond-square)
+    - [⭐⭐ Colorer la height map](#-colorer-la-height-map)
+- [Custom](#custom)
+    - [⭐⭐ Animation Cercle Hachuré](#-animation-cercle-hachuré)
+
+# Exos
 
 ## ⭐ Ne garder que le vert
 
@@ -8,7 +45,6 @@
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
     for (glm::vec3& color : image.pixels())
     {
         color.r = 0.f;
@@ -26,7 +62,6 @@ int main()
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
     for (glm::vec3& color : image.pixels())
     {
         std::swap(color.g, color.r);
@@ -44,7 +79,6 @@ int main()
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
     for (glm::vec3& color : image.pixels())
     {
         float c = color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
@@ -65,7 +99,6 @@ int main()
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
     for (glm::vec3& color : image.pixels())
     {
         color.r = 1 - color.r;
@@ -84,7 +117,6 @@ int main()
 int main()
 {
     sil::Image image{"images/logo.png"};
-    // TODO: modifier l'image
     for (glm::vec3& color : image.pixels())
     {
         color.r = 1 - color.r;
@@ -94,14 +126,6 @@ int main()
     image.save("output/negate.png");
 }
 ```
-
-## ⭐ Netteté, Contours, etc.
-
-```cpp
-//TODO: XXX
-```
-
-# ⭐⭐ Exos
 
 ## ⭐⭐ Miroir
 
@@ -217,65 +241,6 @@ int main()
 }
 ```
 
-## ⭐⭐ Filtres séparables
-
-```cpp
-//TODO: XXX
-```
-
-## ⭐⭐ Différence de gaussiennes
-
-```cpp
-//TODO: XXX
-```
-
-## ⭐⭐ Colorer la height map
-
-```cpp
-//TODO: XXX
-```
-
-## ⭐⭐ Mosaïque
-
-```cpp
-//TODO: XXX
-```
-
-## ⭐⭐ Animation
-
-```cpp
-#include <sil/sil.hpp>
-#include <cmath>
-#include <string>
-
-int main()
-{
-    int r = 100;
-    int spf = 10; // speed per frame
-
-    for (int a = 0; a < 500; a+=spf) {
-
-        sil::Image image{500, 500};
-        int b = image.height() / 2;
-
-        for (int x{0}; x < image.width(); ++x)
-        {
-            for (int y{0}; y < image.height(); ++y)
-            {
-                int dx = x - a;
-                int dy = y - b;
-                if (dx*dx + dy*dy <= r * r) {
-                    image.pixel(x,y) = glm::vec3 {1.0f,1.0f,1.0f};
-                }
-            }
-        }
-
-        auto fileName = "output/animated_circle/" + std::to_string(a/spf) + ".png";
-        image.save(fileName);
-    }
-}
-```
-
 ## ⭐⭐(⭐) Disque
 
 ```cpp
@@ -306,9 +271,7 @@ int main()
 }
 ```
 
-# ⭐⭐⭐ Exos
-
-## ⭐⭐⭐ Cercle
+### ⭐⭐⭐ Cercle
 
 ```cpp
 #include <sil/sil.hpp>
@@ -344,7 +307,42 @@ int main()
 }
 ```
 
-## ⭐⭐⭐ Rosace
+### ⭐⭐ Animation
+
+```cpp
+#include <sil/sil.hpp>
+#include <cmath>
+#include <string>
+
+int main()
+{
+    int r = 100;
+    int spf = 10; // speed per frame
+
+    for (int a = 0; a < 500; a+=spf) {
+
+        sil::Image image{500, 500};
+        int b = image.height() / 2;
+
+        for (int x{0}; x < image.width(); ++x)
+        {
+            for (int y{0}; y < image.height(); ++y)
+            {
+                int dx = x - a;
+                int dy = y - b;
+                if (dx*dx + dy*dy <= r * r) {
+                    image.pixel(x,y) = glm::vec3 {1.0f,1.0f,1.0f};
+                }
+            }
+        }
+
+        auto fileName = "output/animated_circle/" + std::to_string(a/spf) + ".png";
+        image.save(fileName);
+    }
+}
+```
+
+### ⭐⭐⭐ Rosace
 
 ```cpp
 #include <sil/sil.hpp>
@@ -390,54 +388,58 @@ int main()
 }
 ```
 
+## ⭐⭐ Mosaïque
+
+```cpp
+//TODO: ⭐⭐ Mosaïque
+```
+
+### ⭐⭐⭐⭐ Mosaïque miroir
+
+```cpp
+//TODO: > ⭐⭐⭐⭐ Mosaïque miroir
+```
+
 ## ⭐⭐⭐ Glitch
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐ Glitch
 ```
 
 ## ⭐⭐⭐ Tri de pixels
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐ Tri de pixels
 ```
 
 ## ⭐⭐⭐(⭐) Fractale de Mandelbrot
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐(⭐) Fractale de Mandelbrot
 ```
 
 ## ⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab
 ```
 
 ## ⭐⭐⭐(⭐) Tramage
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐(⭐) Tramage
 ```
 
 ## ⭐⭐⭐(⭐) Normalisation de l'histogramme
 
 ```cpp
-//TODO: XXX
-```
-
-# ⭐⭐⭐⭐ Exos
-
-## ⭐⭐⭐⭐ Mosaïque miroir
-
-```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐(⭐) Normalisation de l'histogramme
 ```
 
 ## ⭐⭐⭐⭐ Vortex
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐⭐ Vortex
 ```
 
 ## ⭐⭐⭐⭐ Convolutions
@@ -481,26 +483,46 @@ int main()
 }
 ```
 
-# ⭐⭐⭐⭐⭐ Exos
+### ⭐ Netteté, Contours, etc.
+
+```cpp
+//TODO: > ⭐ Netteté, Contours, etc.
+```
+
+## ⭐⭐ Filtres séparables
+
+```cpp
+//TODO: > ⭐⭐ Filtres séparables
+```
+
+## ⭐⭐ Différence de gaussiennes
+
+```cpp
+//TODO: > ⭐⭐ Différence de gaussiennes
+```
 
 ## ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 ```
 
 ## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 ```
-
-# ⭐⭐⭐⭐⭐⭐ Exos
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
 ```cpp
-//TODO: XXX
+//TODO: ⭐⭐⭐⭐⭐⭐ Diamond Square
+```
+
+### ⭐⭐ Colorer la height map
+
+```cpp
+//TODO: > ⭐⭐ Colorer la height map
 ```
 
 # Custom
