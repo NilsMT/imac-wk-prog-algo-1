@@ -15,7 +15,7 @@
         - [⭐⭐⭐ Cercle ✅](#-cercle)
         - [⭐⭐ Animation ✅](#-animation)
         - [⭐⭐⭐ Rosace ✅](#-rosace)
-    - [⭐⭐ Mosaïque](#-mosaïque)
+    - [⭐⭐ Mosaïque ✅](#-mosaïque)
         - [⭐⭐⭐⭐ Mosaïque miroir](#-mosaïque-miroir)
     - [⭐⭐⭐ Glitch](#-glitch)
     - [⭐⭐⭐ Tri de pixels](#-tri-de-pixels)
@@ -116,14 +116,15 @@ int main()
 
 int main()
 {
-    sil::Image image{"images/logo.png"};
-    for (glm::vec3& color : image.pixels())
+    sil::Image image{300, 200};
+    for (int x{0}; x < image.width(); ++x)
     {
-        color.r = 1 - color.r;
-        color.g = 1 - color.g;
-        color.b = 1 - color.b;
+        for (int y{0}; y < image.height(); ++y)
+        {
+            image.pixel(x, y) = glm::vec3{static_cast<float>(x) / static_cast<float>(image.width() - 1)};
+        }
     }
-    image.save("output/negate.png");
+    image.save("output/gradient.png");
 }
 ```
 
@@ -391,7 +392,25 @@ int main()
 ## ⭐⭐ Mosaïque
 
 ```cpp
-//TODO: ⭐⭐ Mosaïque
+#include <sil/sil.hpp>
+
+int main()
+{
+    sil::Image base{"images/logo.png"};
+
+    int n = 5;
+
+    sil::Image image{base.width() * n, base.height() * n};
+
+    for (int x{0}; x < (image.width()); ++x)
+    {
+        for (int y{0}; y < (image.height()); ++y)
+        {
+            image.pixel(x,y) = base.pixel(x % base.width(),y % base.height());
+        }
+    }
+    image.save("output/mosaic.png");
+}
 ```
 
 ### ⭐⭐⭐⭐ Mosaïque miroir
