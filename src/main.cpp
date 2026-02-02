@@ -1,34 +1,67 @@
 #include <sil/sil.hpp>
-#include <algorithm>
+#include <cmath>
+
+glm::vec3 linear_to_oklab(const glm::vec3& linear) 
+{
+    float l = 0.4122214708f * linear.r + 0.5363325363f * linear.g + 0.0514459929f * linear.b;
+    float m = 0.2119034982f * linear.r + 0.6806995451f * linear.g + 0.1073969566f * linear.b;
+    float s = 0.0883024619f * linear.r + 0.2817188376f * linear.g + 0.6299787005f * linear.b;
+
+    float l_ = cbrtf(l);
+    float m_ = cbrtf(m);
+    float s_ = cbrtf(s);
+
+    return glm::vec3{
+        0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_,
+        1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_,
+        0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_
+    };
+}
+
+/*
+0 ≤ S ≤ 0.04045	
+===> L = S/12.92
+0.04045 < S ≤ 1
+===> L = ((S+0.055)/1.055)^2.4
+*/
+glm::vec3 srgb_to_linear(const glm::vec3& srgb) {
+    glm::vec3 linear;
+    for (int i = 0; i < 3; ++i) {
+        float c = srgb[i];
+        if (c <= 0.04045f) {
+            linear[i] = c * (1.0f / 12.92f);  // Linear section
+        } else {
+            linear[i] = powf((c + 0.055f) * (1.0f / 1.055f), 2.4f);  // Exponential section
+        }
+    }
+    return linear;
+}
 
 int main()
 {
-    sil::Image image{"images/logo.png"};
-    
-    //lambda exp that turn color into grayscale
-    auto grayscale = [](const glm::vec3 &c){
-        return glm::dot(c, glm::vec3{0.3f, 0.59f, 0.11f});
-    };
+    sil::Image image{300, 200};
+    auto srgb = image;
+    auto linear = image;
+    auto oklab = image;
 
-    //sort each column by luminance
     for (int x{0}; x < image.width(); ++x)
     {
-        //get column
-        std::vector<glm::vec3> column;
-
-        //append pixels to column
         for (int y{0}; y < image.height(); ++y)
-            column.push_back(image.pixel(x, y));
+        {
+            float ry = static_cast<float>(y) / static_cast<float>(image.height() - 1);
+            float rx = static_cast<float>(x) / static_cast<float>(image.width() - 1);
+            glm::vec3 c = glm::vec3{1.0f - rx, rx, 0.0f};
+            //1 : to linear
+            glm::vec3 linear_c = srgb_to_linear(c);
+            //2 : to oklab
+            glm::vec3 lab_c = linear_to_oklab(linear_c);
 
-        //sort column by luminance (worse up, better down)
-        std::sort(column.begin(), column.end(), [&](const glm::vec3 &a, const glm::vec3 &b){
-            return grayscale(a) > grayscale(b);
-        });
-
-        //write back in the image
-        for (int y{0}; y < image.height(); ++y)
-            image.pixel(x, y) = column[y];
+            srgb.pixel(x, y) = c;
+            linear.pixel(x, y) = linear_c;
+            oklab.pixel(x, y) = lab_c;
+        }
     }
-
-    image.save("output/sorted.png");
+    srgb.save("output/lab_srgb.png");
+    linear.save("output/lab_linear.png");
+    oklab.save("output/lab_oklab.png");
 }
