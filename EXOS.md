@@ -17,7 +17,7 @@
         - [⭐⭐⭐ Rosace ✅](#-rosace)
     - [⭐⭐ Mosaïque ✅](#-mosaïque)
         - [⭐⭐⭐⭐ Mosaïque miroir](#-mosaïque-miroir)
-    - [⭐⭐⭐ Glitch](#-glitch)
+    - [⭐⭐⭐ Glitch ✅](#-glitch)
     - [⭐⭐⭐ Tri de pixels](#-tri-de-pixels)
     - [⭐⭐⭐(⭐) Fractale de Mandelbrot](#-fractale-de-mandelbrot)
     - [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](#-dégradés-dans-lespace-de-couleur-lab)
