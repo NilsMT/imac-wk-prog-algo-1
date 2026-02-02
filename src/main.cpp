@@ -2,25 +2,35 @@
 
 int main()
 {
-    sil::Image image{"images/photo_faible_contraste.jpg"};
+    sil::Image image{"images/logo.png"};
+    auto base = image;
 
-    glm::vec3 brightest{0.f};
-    glm::vec3 darkest{1.f};
+    //kernel
+    float kernel[3][3] = {
+        {0.0625,0.125,0.0625},
+        {0.125,0.25,0.125},
+        {0.0625,0.125,0.0625}
+    };
 
-    //first : find brightest and darkest colors
-    for (glm::vec3& color : image.pixels())
+    for (int x{0}; x < image.width(); ++x)
     {
-        if (glm::any(glm::greaterThanEqual(color, brightest)))
-            brightest = glm::max(brightest, color);
-        if (glm::any(glm::lessThanEqual(color, darkest)))
-            darkest = glm::min(darkest, color);
-    }
+        for (int y{0}; y < image.height(); ++y)
+        {
+            glm::vec3 new_color{0.0f};
 
-    //second : histogram normalization
-    for (glm::vec3& color : image.pixels())
-    {
-        auto c = (color - darkest)/(brightest-darkest);
-        color = c;
+            // apply the kernel
+            for (int kx{-1}; kx <= 1; ++kx)
+            {
+                for (int ky{-1}; ky <= 1; ++ky)
+                {
+                    int sample_x = glm::clamp(x + kx, 0, image.width() - 1);
+                    int sample_y = glm::clamp(y + ky, 0, image.height() - 1);
+                    new_color += base.pixel(sample_x, sample_y) * kernel[kx + 1][ky + 1];
+                }
+            }
+
+            image.pixel(x, y) = glm::clamp(new_color, 0.0f, 1.0f);
+        }
     }
-    image.save("output/histogram.png");
+    image.save("output/convolution.png");
 }
