@@ -1,42 +1,26 @@
-
 #include <sil/sil.hpp>
-#include <cmath>
 
 int main()
 {
-    sil::Image image{500, 500};
+    sil::Image image{"images/photo_faible_contraste.jpg"};
 
-    int ca = image.width() / 2;
-    int cb = image.height() / 2;
+    glm::vec3 brightest{0.f};
+    glm::vec3 darkest{1.f};
 
-    int r = 100;
-    int thickness = 5; // thickness in pixels
-    int n = 6; //number of circles
-
-    for (int i = 0; i < n; ++i)
+    //first : find brightest and darkest colors
+    for (glm::vec3& color : image.pixels())
     {
-        float angle = i * (2 * M_PI / n);
-        int a = static_cast<int>(ca + r * std::cos(angle));
-        int b = static_cast<int>(cb + r * std::sin(angle));
-
-        for (int x = 0; x < image.width(); ++x)
-        {
-            for (int y = 0; y < image.height(); ++y)
-            {
-                int dx = x - a;
-                int dy = y - b;
-
-                float dist = std::sqrt(dx * dx + dy * dy);
-
-                if (std::abs(dist - r) <= thickness)
-                {
-                    image.pixel(x, y) = glm::vec3{1.f, 1.f, 1.f};
-                }
-            }
-        }
+        if (glm::any(glm::greaterThanEqual(color, brightest)))
+            brightest = glm::max(brightest, color);
+        if (glm::any(glm::lessThanEqual(color, darkest)))
+            darkest = glm::min(darkest, color);
     }
 
-    
-
-    image.save("output/rosace.png");
+    //second : histogram normalization
+    for (glm::vec3& color : image.pixels())
+    {
+        auto c = (color - darkest)/(brightest-darkest);
+        color = c;
+    }
+    image.save("output/histogram.png");
 }
