@@ -1,9 +1,7 @@
 #include <sil/sil.hpp>
 #include "random.hpp"
 #include <array>
-#include <iostream>
 #include <cmath>
-#include <iomanip>
 
 //config (you can change these)
 const int n = 8;
@@ -115,8 +113,6 @@ int main() {
     sil::Image image{mapSize, mapSize};
     sil::Image color_map{"images/color_map.png"};
     float pre = 1.f / color_map.width();
-
-    std::cout << (float)pre << "\n";
     
     arrayT res = diamond_square_algorithm(8.0f);
 
