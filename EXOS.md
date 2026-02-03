@@ -1100,15 +1100,16 @@ int main()
 #include "random.hpp"
 #include <array>
 #include <cmath>
+#include <iostream>
 
 //config (you can change these)
 const int n = 8;
-const float hMin = 1.0f;
-const float hMax = 8.0f;
+const float hMin = 1.f;
+const float hMax = 8.f;
 
 //globals (don't touch)
-float mapMin = 0;
-float mapMax = 0;
+float mapMin = 0.f;
+float mapMax = 0.f;
 const int mapSize = pow(2, n) + 1;
 using arrayT = std::array<std::array<float, mapSize>, mapSize>;
 
@@ -1222,7 +1223,14 @@ int main() {
             //coloring
             v = std::round(v / pre) * pre;//rounding
             glm::vec3 color;
-            color = color_map.pixel(static_cast<int>(v*color_map.width())-1, 0);
+
+            int color_x = static_cast<int>(v*color_map.width())-1;
+            if (color_x < 0.f) {
+                color_x = 0.f;
+            } else if (color_x >= color_map.width()) {
+                color_x = color_map.width() - 1;
+            }
+            color = color_map.pixel(color_x, 0);
 
             image.pixel(x, y) = color;
         }
