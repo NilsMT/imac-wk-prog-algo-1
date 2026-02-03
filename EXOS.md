@@ -16,7 +16,7 @@
         - [⭐⭐ Animation ✅](#-animation)
         - [⭐⭐⭐ Rosace ✅](#-rosace)
     - [⭐⭐ Mosaïque ✅](#-mosaïque)
-        - [⭐⭐⭐⭐ Mosaïque miroir](#-mosaïque-miroir)
+        - [⭐⭐⭐⭐ Mosaïque miroir ✅](#-mosaïque-miroir)
     - [⭐⭐⭐ Glitch ✅](#-glitch)
     - [⭐⭐⭐ Tri de pixels ✅](#-tri-de-pixels)
     - [⭐⭐⭐(⭐) Fractale de Mandelbrot](#-fractale-de-mandelbrot)
