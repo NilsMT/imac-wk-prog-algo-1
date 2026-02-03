@@ -416,7 +416,36 @@ int main()
 ### ⭐⭐⭐⭐ Mosaïque miroir
 
 ```cpp
-//TODO: > ⭐⭐⭐⭐ Mosaïque miroir
+#include <sil/sil.hpp>
+
+int main()
+{
+    sil::Image base{"images/logo.png"};
+    int n = 5;
+    sil::Image image{base.width() * n, base.height() * n};
+
+    for (int x = 0; x < image.width(); ++x)
+    {
+        for (int y = 0; y < image.height(); ++y)
+        {
+            int tileX = x / base.width();
+            int tileY = y / base.height();
+
+            int localX = x % base.width();
+            int localY = y % base.height();
+
+            if (tileX % 2 != 0)
+                localX = base.width() - 1 - localX;
+
+            if (tileY % 2 != 0)
+                localY = base.height() - 1 - localY;
+
+            image.pixel(x, y) = base.pixel(localX, localY);
+        }
+    }
+
+    image.save("output/mosaic_mirror.png");
+}
 ```
 
 ## ⭐⭐⭐ Glitch
