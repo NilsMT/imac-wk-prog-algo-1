@@ -2,12 +2,14 @@ Superbe repo où on fait joujou avec des images
 
 > ℹ️ le code de chaque exo se trouve dans [EXOS.md](./EXOS.md)
 
-# Blabla
+# Explications de trucs
 
 Le résultat de l'exercice custom [⭐⭐ Animation Cercle Hachuré](./EXOS.md#-animation-cercle-hachuré) est due à une erreur où
 j'ai ajouté une valeur à la mauvaise variable.
 
-Résultat, j'ai incrémenté les x des pixels de 10 au lieu de la position du cercle ce qui fait cet effet hachuré
+[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
+
+Résultat, j'ai incrémenté les x des pixels de 10 au lieu de la position du cercle ce qui fait cet effet hachuré ce qui fait que le cercle ne colorie que tout les 10 x.
 
 ---
 
