@@ -9,12 +9,6 @@
 const int n = 8;
 const float hMin = 1.0f;
 const float hMax = 8.0f;
-//color1 -> color2 |/| color3 -> color4
-const glm::vec3 color1 = glm::vec3{0.f, 0.f, 0.2f}; //dark blue
-const glm::vec3 color2 = glm::vec3{0.f, 0.f, 1.f}; //blue
-const glm::vec3 color3 = glm::vec3{0.f, 1.f, 0.f}; //green
-const glm::vec3 color4 = glm::vec3{0.f, 0.2f, 0.f}; //dark green
-const float treshold1_2 = 0.5f; //between color1 and color2
 
 //globals (don't touch)
 float mapMin = 0;
@@ -119,6 +113,10 @@ arrayT diamond_square_algorithm(float r) {
 
 int main() {
     sil::Image image{mapSize, mapSize};
+    sil::Image color_map{"images/color_map.png"};
+    float pre = 1.f / color_map.width();
+
+    std::cout << (float)pre << "\n";
     
     arrayT res = diamond_square_algorithm(8.0f);
 
@@ -128,17 +126,12 @@ int main() {
             v = (v - mapMin) / (mapMax - mapMin);
 
             //coloring
-            v = std::round(v / 0.1f) * 0.1f;//rounding to have less smooth colors
+            v = std::round(v / pre) * pre;//rounding
             glm::vec3 color;
-            
-            if (v > treshold1_2) {
-                color = glm::mix(color3, color4, v);
-            } else {
-                color = glm::mix(color1, color2, v);
-            }
+            color = color_map.pixel(static_cast<int>(v*color_map.width())-1, 0);
 
             image.pixel(x, y) = color;
         }
     }
-    image.save("output/diamond_square_colored.png");
+    image.save("output/diamond_square_colored_with_map.png");
 }
