@@ -10,7 +10,7 @@ Résultat, j'ai incrémenté les x des pixels de 10 au lieu de la position du ce
 
 ---
 
-Pour l'exercice [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](./EXO.md#-dégradés-dans-lespace-de-couleur-lab) j'ai un résultat bizarre alors que j'ai exactement la même formule que sur le site 🥲
+Pour l'exercice [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](./EXO.md#-dégradés-dans-lespace-de-couleur-lab) le résultat du dégradé n'est pas pertinent puisque l'espace de couleur utilisé par la librairie sil est sRGB et donc les valeurs Lab sont interprété comme des sRGB
 
 sRGB<br>
 ![srgb](./output/lab_srgb.png)
@@ -21,4 +21,4 @@ sRGB -> Linear RGB<br>
 Linear RGB -> Oklab<br>
 ![srgb](./output/lab_oklab.png)
 
-Le Oklab est beaucoup trop rouge et je ne comprend pas pourquoi
+Oklab est bon en terme de perception uniforme de la couleurs par rapport à la luminosité contrairement à sRGB qui affiche des couleurs plus sombres dans certaines transitions.

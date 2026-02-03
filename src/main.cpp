@@ -1,5 +1,6 @@
 #include <sil/sil.hpp>
 #include <cmath>
+#include <iostream>
 
 glm::vec3 linear_to_oklab(const glm::vec3& linear) 
 {
@@ -11,10 +12,12 @@ glm::vec3 linear_to_oklab(const glm::vec3& linear)
     float m_ = cbrtf(m);
     float s_ = cbrtf(s);
 
+    float L = 0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_;
+    float a = 1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_;
+    float b = 0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_;
+
     return glm::vec3{
-        0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_,
-        1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_,
-        0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_
+        L,a,b
     };
 }
 
