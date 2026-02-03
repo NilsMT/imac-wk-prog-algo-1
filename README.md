@@ -10,15 +10,10 @@ Résultat, j'ai incrémenté les x des pixels de 10 au lieu de la position du ce
 
 ---
 
-Pour l'exercice [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](./EXO.md#-dégradés-dans-lespace-de-couleur-lab) le résultat du dégradé n'est pas pertinent puisque l'espace de couleur utilisé par la librairie sil est sRGB et donc les valeurs Lab sont interprété comme des sRGB
+Pour l'exercice [ ⭐⭐⭐ Colorer la height map selon une image de dégradé](#-colorer-la-height-map-selon-une-image-de-dégradé) j'ai décidé de reprendre la coloration de la height_map mais de me baser sur une image qui contient un dégradé horizontal de couleur :
 
-sRGB<br>
-![srgb](./output/lab_srgb.png)
+![color_map](./images/color_map.png)
 
-sRGB -> Linear RGB<br>
-![srgb](./output/lab_linear.png)
+Qui permet de coloré les valeurs allant de 0 (couleur à gauche) à 1 (couleur à droite), ce qui donne :
 
-Linear RGB -> Oklab<br>
-![srgb](./output/lab_oklab.png)
-
-Oklab est bon en terme de perception uniforme de la couleurs par rapport à la luminosité contrairement à sRGB qui affiche des couleurs plus sombres dans certaines transitions.
+![result](./output/diamond_square_colored_with_map.png)
