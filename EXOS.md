@@ -26,7 +26,7 @@
     - [⭐⭐⭐⭐ Vortex ✅](#-vortex)
     - [⭐⭐⭐⭐ Convolutions ✅](#-convolutions)
         - [⭐ Netteté, Contours, etc. ✅](#-netteté-contours-etc)
-        - [⭐⭐ Filtres séparables 🛑](#-filtres-séparables)
+        - [⭐⭐ Filtres séparables ✅](#-filtres-séparables)
         - [⭐⭐ Différence de gaussiennes 🛑](#-différence-de-gaussiennes)
     - [⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image 🛑](#-k-means--trouver-les-couleurs-les-plus-présentes-dans-une-image)
     - [⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile) 🛑](#-filtre-de-kuwahara-effet-peinture-à-lhuile)
