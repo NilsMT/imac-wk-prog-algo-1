@@ -1,77 +1,47 @@
 #include <sil/sil.hpp>
+#include <glm/gtx/matrix_transform_2d.hpp>
 #include <cmath>
-#include <vector>
 
-using bayerT = std::vector<std::vector<float>>;
+using vec2 = glm::vec2;
 
-bayerT generateBayerLevel(int n) {
-    if (n == 1) {
-        //bayer at level 0
-        return {
-            { -0.5f,  0.5f },
-            {  1.5f, -1.5f }
-        };
-    }
-
-    bayerT prev = generateBayerLevel(n - 1);
-    int size = prev.size();
-    int newSize = size * 2;
-
-    bayerT result(newSize, std::vector<float>(newSize));
-
-    for (int y = 0; y < size; ++y) {
-        for (int x = 0; x < size; ++x) {
-            float v = prev[y][x];
-
-            //recursion
-            result[y][x] = 4.0f * v + 0.0f;
-            result[y][x + size] = 4.0f * v + 2.0f;
-            result[y + size][x] = 4.0f * v + 3.0f;
-            result[y + size][x + size] = 4.0f * v + 1.0f;
-        }
-    }
-
-    return result;
+vec2 rotated(vec2 point, vec2 center_of_rotation, float angle)
+{
+    return vec2{glm::rotate(glm::mat3{1.f}, angle) * glm::vec3{point - center_of_rotation, 0.f}} + center_of_rotation;
 }
 
 int main() {
     //config
-    float trs = 0.675f; //threshold shift [0;1] (the higher, the darker)
-    int level = 2; //bayer level
+    float maxAngle = (4*M_PI); //the max angle a pixel can be rotate too (radians)
 
-    //1 : grayscale with sqrt(r^2 + g^2 + b^2)
-    sil::Image image{"images/photo.jpg"};
-    for (glm::vec3& color : image.pixels())
-    {
-        float c = color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
+    sil::Image image{"images/logo.png"};
+    auto vortex = image;
 
-        color = glm::vec3{c};
-    }
+    vec2 center = vec2{
+        image.width()/2,
+        image.height()/2
+    };
 
-    image.save("output/dithering_before.png");
+    const float maxDistance = 
+        glm::distance(vec2{0,0}, center);
 
-    //2 : dithering
-    const auto bayer = generateBayerLevel(level);
-    float maxB = pow(bayer.size(), 2);
-
-    for (int x = 0; x < image.width(); ++x)
-    {
+    for (int x = 0; x < image.width(); ++x) {
         for (int y = 0; y < image.height(); ++y) {
-            
-            const float brt = image.pixel(x,y).r;
+            vec2 pos{float(x), float(y)};
+            float d = glm::distance(pos, center);
+            float r = d / maxDistance; //= the further the higher [0;1]
+            float angle = maxAngle * r;
 
-            //bayer value
-            float b = bayer[y % bayer.size()][x % bayer.size()];
-            b = (b + 0.5f) / maxB; //normalize to [0,1]
+            //rotation
+            vec2 rot = rotated(pos, center, angle);
 
-            const float c = brt > trs - b
-                ? 1.0 
-                : 0.0;
+            //clamp image bounds
+            rot.x = glm::clamp(rot.x, 0.f, float(image.width() - 1));
+            rot.y = glm::clamp(rot.y, 0.f, float(image.height() - 1));
 
-            image.pixel(x,y) = glm::vec3{c};
+            //assign the current one to the rotated pixel
+            vortex.pixel(x, y) = image.pixel(int(rot.x), int(rot.y));
         }
-        
     }
     
-    image.save("output/dithering.png");
+    vortex.save("output/vortex.png");
 }
