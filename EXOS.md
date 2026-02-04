@@ -21,7 +21,7 @@
     - [⭐⭐⭐ Tri de pixels ✅](#-tri-de-pixels)
     - [⭐⭐⭐(⭐) Fractale de Mandelbrot ✅](#-fractale-de-mandelbrot)
     - [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab ✅](#-dégradés-dans-lespace-de-couleur-lab)
-    - [⭐⭐⭐(⭐) Tramage 🛑](#-tramage)
+    - [⭐⭐⭐(⭐) Tramage ✅](#-tramage)
     - [⭐⭐⭐(⭐) Normalisation de l'histogramme ✅](#-normalisation-de-lhistogramme)
     - [⭐⭐⭐⭐ Vortex 🛑](#-vortex)
     - [⭐⭐⭐⭐ Convolutions ✅](#-convolutions)
