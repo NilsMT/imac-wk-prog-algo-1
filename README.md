@@ -1,15 +1,61 @@
+# Description
+
 Superbe repo où on fait joujou avec des images
 
-> ℹ️ le code de chaque exo se trouve dans [EXOS.md](./EXOS.md)
+# Arborescence
 
-# Explications de trucs
+> ℹ️ le code de chaque exo et leurs images associées se trouve dans [EXOS.md](./EXOS.md)
+
+> ℹ️ le "rapport" correspond à ce fichier
+
+```
+📁 build            : fichiers de build (gitignored)
+📁 images           : images d'input
+📁 lib
+   └── 📁 sil       : librairie pour modifier les images
+📁 output           : images d'output
+📁 src
+   └──  📄 main.cpp : le fichier principale
+📄 README.md        : le rapport
+📄 EXOS.md          : le code de chaque exercice
+```
+
+# Rapport
 
 Le résultat de l'exercice custom [⭐⭐ Animation Cercle Hachuré](./EXOS.md#-animation-cercle-hachuré) est due à une erreur où
 j'ai ajouté une valeur à la mauvaise variable.
 
-[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
+```cpp
+#include <sil/sil.hpp>
+#include <cmath>
+#include <string>
 
-Résultat, j'ai incrémenté les x des pixels de 10 au lieu de la position du cercle ce qui fait cet effet hachuré ce qui fait que le cercle ne colorie que tout les 10 x.
+int main()
+{
+    int r = 100;
+    int tr = 10; // threshold
+    int spf = 10; // speed per frame
+
+    for (int a = 0; a < 500; a+=spf) {
+
+        [...];
+        //                                    👇 ICI
+        for (int x{0}; x < image.width(); x += tr)
+        {
+            for (int y{0}; y < image.height(); ++y)
+            {
+                [...];
+            }
+        }
+
+        [...];
+    }
+}
+```
+
+Résultat, j'ai incrémenté les `x` des pixels de 10 au lieu de la position (`a`) du cercle ce qui fait cet effet hachuré ce qui fait que le cercle ne colorie que tout les 10 `x`.
+
+[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
 
 ---
 
@@ -17,7 +63,7 @@ Pour l'exercice [⭐⭐⭐ Colorer la height map selon une image de dégradé](.
 j'ai décidé de reprendre la coloration de la height_map mais de me baser sur une image
 qui contient un dégradé horizontal de couleur : [![color_map](./images/color_map.png)](./images/color_map.png)
 
-Qui permet de coloré les valeurs allant de 0 (couleur à gauche) à 1 (couleur à droite), ce qui donne :
+Qui permet de colorer les valeurs allant de 0 (couleur à gauche) à 1 (couleur à droite), ce qui donne :
 
 [![result](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
 
