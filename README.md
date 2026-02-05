@@ -1,4 +1,4 @@
-![result](./images/banner.png)
+![](./images/banner.png)
 
 # Description
 
@@ -61,7 +61,7 @@ int main()
 
 Résultat, j'ai incrémenté les `x` des pixels de 10 au lieu de la position (`a`) du cercle ce qui fait cet effet hachuré ce qui fait que le cercle ne colorie que tout les 10 `x`.
 
-[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
+[![](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
 
 ---
 
@@ -71,7 +71,7 @@ qui contient un dégradé horizontal de couleur : [![color_map](./images/color_m
 
 Qui permet de colorer les valeurs allant de 0 (couleur à gauche) à 1 (couleur à droite), ce qui donne :
 
-[![result](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
+[![](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
 
 ---
 

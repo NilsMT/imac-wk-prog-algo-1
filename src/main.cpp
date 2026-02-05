@@ -1,11 +1,12 @@
+
 #include <sil/sil.hpp>
 
 sil::Image blur(sil::Image image, int n) {
-    float kernel[16][16];
+    float kernel[n][n];
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             kernel[i][j] = 1.0f / (n * n);
-    
+
     auto base = image; //result
     auto temp = image; //temp for x pass
 
@@ -77,7 +78,7 @@ int main() {
     int k = 2; // second blur scale factor
 
     sil::Image image("images/photo.jpg");
-    
+
     //grayscale (because acerola cheated)
     image = grayscale(image);
 
@@ -88,11 +89,11 @@ int main() {
 
     for (int y = 0; y < jungle_diff.height(); ++y) {
         for (int x = 0; x < jungle_diff.width(); ++x) {
-            jungle_diff.pixel(x, y) = 
-                jungle_diff.pixel(x, y).r > T ? 
+            jungle_diff.pixel(x, y) =
+                jungle_diff.pixel(x, y).r > T ?
                     glm::vec3(0.0f) : glm::vec3(1.0f);
         }
     }
-
+    
     jungle_diff.save("output/gaussians_diff.png");
 }

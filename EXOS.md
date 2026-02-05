@@ -1,3 +1,5 @@
+![](./images/banner.png)
+
 # Sommaire
 
 - [Exos](#exos)
@@ -56,7 +58,7 @@ int main()
 }
 ```
 
-[![result](./output/keep_green_only.png)](./output/keep_green_only.png)
+[![](./output/keep_green_only.png)](./output/keep_green_only.png)
 
 ## ⭐ Échanger les canaux
 
@@ -75,7 +77,7 @@ int main()
 }
 ```
 
-[![result](./output/swap.png)](./output/swap.png)
+[![](./output/swap.png)](./output/swap.png)
 
 ## ⭐ Noir & Blanc
 
@@ -94,7 +96,7 @@ int main()
 }
 ```
 
-[![result](./output/grayscale.png)](./output/grayscale.png)
+[![](./output/grayscale.png)](./output/grayscale.png)
 
 ## ⭐ Négatif
 
@@ -114,7 +116,7 @@ int main()
 }
 ```
 
-[![result](./output/negate.png)](./output/negate.png)
+[![](./output/negate.png)](./output/negate.png)
 
 ## ⭐ Dégradé
 
@@ -135,7 +137,7 @@ int main()
 }
 ```
 
-[![result](./output/gradient.png)](./output/gradient.png)
+[![](./output/gradient.png)](./output/gradient.png)
 
 ## ⭐⭐ Miroir
 
@@ -158,7 +160,7 @@ int main()
 }
 ```
 
-[![result](./output/mirror.png)](./output/mirror.png)
+[![](./output/mirror.png)](./output/mirror.png)
 
 ## ⭐⭐ Image bruitée
 
@@ -183,7 +185,7 @@ int main()
 }
 ```
 
-[![result](./output/noise.png)](./output/noise.png)
+[![](./output/noise.png)](./output/noise.png)
 
 ## ⭐⭐ Rotation de 90°
 
@@ -205,7 +207,7 @@ int main()
 }
 ```
 
-[![result](./output/rotated.png)](./output/rotated.png)
+[![](./output/rotated.png)](./output/rotated.png)
 
 ## ⭐⭐ RGB split
 
@@ -238,7 +240,7 @@ int main()
 }
 ```
 
-[![result](./output/split.png)](./output/split.png)
+[![](./output/split.png)](./output/split.png)
 
 ## ⭐⭐ Luminosité
 
@@ -261,7 +263,7 @@ int main()
 }
 ```
 
-[![result](./output/brightness.png)](./output/brightness.png)
+[![](./output/brightness.png)](./output/brightness.png)
 
 ## ⭐⭐(⭐) Disque
 
@@ -293,7 +295,7 @@ int main()
 }
 ```
 
-[![result](./output/disc.png)](./output/disc.png)
+[![](./output/disc.png)](./output/disc.png)
 
 ### ⭐⭐⭐ Cercle
 
@@ -331,7 +333,7 @@ int main()
 }
 ```
 
-[![result](./output/circle.png)](./output/circle.png)
+[![](./output/circle.png)](./output/circle.png)
 
 ### ⭐⭐ Animation
 
@@ -368,7 +370,7 @@ int main()
 }
 ```
 
-[![result](./output/animated_circle/ezgif.gif)](./output/animated_circle/ezgif.gif)
+[![](./output/animated_circle/ezgif.gif)](./output/animated_circle/ezgif.gif)
 
 ### ⭐⭐⭐ Rosace
 
@@ -416,7 +418,7 @@ int main()
 }
 ```
 
-[![result](./output/rosace.png)](./output/rosace.png)
+[![](./output/rosace.png)](./output/rosace.png)
 
 ## ⭐⭐ Mosaïque
 
@@ -442,7 +444,7 @@ int main()
 }
 ```
 
-[![result](./output/mosaic.png)](./output/mosaic.png)
+[![](./output/mosaic.png)](./output/mosaic.png)
 
 ### ⭐⭐⭐⭐ Mosaïque miroir
 
@@ -479,7 +481,7 @@ int main()
 }
 ```
 
-[![result](./output/mosaic_mirror.png)](./output/mosaic_mirror.png)
+[![](./output/mosaic_mirror.png)](./output/mosaic_mirror.png)
 
 ## ⭐⭐⭐ Glitch
 
@@ -540,7 +542,7 @@ int main()
 }
 ```
 
-[![result](./output/glitch.png)](./output/glitch.png)
+[![](./output/glitch.png)](./output/glitch.png)
 
 ## ⭐⭐⭐ Tri de pixels
 
@@ -581,7 +583,7 @@ int main()
 }
 ```
 
-[![result](./output/sorted.png)](./output/sorted.png)
+[![](./output/sorted.png)](./output/sorted.png)
 
 ## ⭐⭐⭐(⭐) Fractale de Mandelbrot
 
@@ -627,7 +629,7 @@ int main() {
 }
 ```
 
-[![result](./output/fractal.png)](./output/fractal.png)
+[![](./output/fractal.png)](./output/fractal.png)
 
 ## ⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab
 
@@ -716,7 +718,7 @@ int main()
 }
 ```
 
-[![result](./output/lab_as_srgb.png)](./output/lab_as_srgb.png)
+[![](./output/lab_as_srgb.png)](./output/lab_as_srgb.png)
 
 ## ⭐⭐⭐(⭐) Tramage
 
@@ -798,7 +800,7 @@ int main() {
 }
 ```
 
-[![result](./output/dithering.png)](./output/dithering.png)
+[![](./output/dithering.png)](./output/dithering.png)
 
 ## ⭐⭐⭐(⭐) Normalisation de l'histogramme
 
@@ -832,7 +834,7 @@ int main()
 }
 ```
 
-[![result](./output/histogram.png)](./output/histogram.png)
+[![](./output/histogram.png)](./output/histogram.png)
 
 ## ⭐⭐⭐⭐ Vortex
 
@@ -886,7 +888,7 @@ int main() {
 }
 ```
 
-[![result](./output/vortex.png)](./output/vortex.png)
+[![](./output/vortex.png)](./output/vortex.png)
 
 ## ⭐⭐⭐⭐ Convolutions
 
@@ -929,7 +931,7 @@ int main()
 }
 ```
 
-[![result](./output/convolution.png)](./output/convolution.png)
+[![](./output/convolution.png)](./output/convolution.png)
 
 ### ⭐ Netteté, Contours, etc.
 
@@ -972,7 +974,7 @@ int main()
 }
 ```
 
-[![result](./output/contours.png)](./output/contours.png)
+[![](./output/contours.png)](./output/contours.png)
 
 ## ⭐⭐ Filtres séparables
 
@@ -984,7 +986,7 @@ int main() {
     const int n = 16; //kernel size
 
     //define the kernel here
-    float kernel[16][16];
+    float kernel[n][n];
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             kernel[i][j] = 1.0f / (n * n);
@@ -1032,7 +1034,7 @@ int main() {
 }
 ```
 
-[![result](./output/separable_filters.png)](./output/separable_filters.png)
+[![](./output/separable_filters.png)](./output/separable_filters.png)
 
 ## ⭐⭐ Différence de gaussiennes
 
@@ -1040,7 +1042,7 @@ int main() {
 #include <sil/sil.hpp>
 
 sil::Image blur(sil::Image image, int n) {
-    float kernel[16][16];
+    float kernel[n][n];
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             kernel[i][j] = 1.0f / (n * n);
@@ -1137,7 +1139,7 @@ int main() {
 }
 ```
 
-[![result](./output/gaussians_diff.png)](./output/gaussians_diff.png)
+[![](./output/gaussians_diff.png)](./output/gaussians_diff.png)
 
 ## ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 
@@ -1145,7 +1147,7 @@ int main() {
 //TODO: ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 ```
 
-[![result](./output/.png)](./output/.png)
+[![](./output/.png)](./output/.png)
 
 ## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 
@@ -1153,7 +1155,7 @@ int main() {
 //TODO: ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 ```
 
-[![result](./output/.png)](./output/.png)
+[![](./output/.png)](./output/.png)
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
@@ -1285,7 +1287,7 @@ int main() {
 }
 ```
 
-[![result](./output/diamond_square.png)](./output/diamond_square.png)
+[![](./output/diamond_square.png)](./output/diamond_square.png)
 
 ### ⭐⭐ Colorer la height map
 
@@ -1434,7 +1436,7 @@ int main() {
 }
 ```
 
-[![result](./output/diamond_square_colored.png)](./output/diamond_square_colored.png)
+[![](./output/diamond_square_colored.png)](./output/diamond_square_colored.png)
 
 # Custom
 
@@ -1495,7 +1497,7 @@ int main()
 }
 ```
 
-[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
+[![](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
 
 ## ⭐⭐⭐ Colorer la height map selon une image de dégradé
 
@@ -1643,4 +1645,4 @@ int main() {
 }
 ```
 
-[![result](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
+[![](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
