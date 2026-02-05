@@ -71,7 +71,7 @@ qui contient un dégradé horizontal de couleur : [![color_map](./images/color_m
 
 Qui permet de colorer les valeurs allant de 0 (couleur à gauche) à 1 (couleur à droite), ce qui donne :
 
-[![](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
+[![](./output/diamond_color_map.png)](./output/diamond_color_map.png)
 
 ---
 
@@ -87,3 +87,16 @@ Voici une comparaison du temps d'exécution entre l'exercice
 | 64               | 7.51449        | 0.204911           | x38        |
 | 128              | 30.6175        | 0.41851            | x75        |
 | 256              | 125.253        | 0.830643           | x151       |
+
+---
+
+Pour [⭐ Différence](./EXOS.md#-différence) j'ai juste fait une fonction qui soustrait les canaux `R,G,B`, cette fonction a été utilisée dans [⭐⭐ Différence de gaussiennes](./EXOS.md#-différence-de-gaussiennes).
+
+---
+
+L'exercice [⭐⭐⭐ Height map stylisée](./EXOS.md#-height-map-stylisée) reprend
+[⭐⭐⭐ Colorer la height map selon une image de dégradé](./EXOS.md#-colorer-la-height-map-selon-une-image-de-dégradé)
+et utilise [⭐⭐⭐(⭐) Tramage](./EXOS.md#-tramage) en tant que map sur la luminosité,
+ce qui donne un effet texturé sur le terrain
+
+[![](./output/diamond_color_dithering.png)](./output/diamond_color_dithering.png)
