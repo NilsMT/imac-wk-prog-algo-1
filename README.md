@@ -1,3 +1,5 @@
+![result](./images/banner.png)
+
 # Description
 
 Superbe repo où on fait joujou avec des images
