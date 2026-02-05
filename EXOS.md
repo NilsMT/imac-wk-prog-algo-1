@@ -55,6 +55,8 @@ int main()
 }
 ```
 
+[![result](./output/keep_green_only.png)](./output/keep_green_only.png)
+
 ## ⭐ Échanger les canaux
 
 ```cpp
@@ -72,6 +74,8 @@ int main()
 }
 ```
 
+[![result](./output/swap.png)](./output/swap.png)
+
 ## ⭐ Noir & Blanc
 
 ```cpp
@@ -88,6 +92,8 @@ int main()
     image.save("output/grayscale.png");
 }
 ```
+
+[![result](./output/grayscale.png)](./output/grayscale.png)
 
 ## ⭐ Négatif
 
@@ -107,6 +113,8 @@ int main()
 }
 ```
 
+[![result](./output/negate.png)](./output/negate.png)
+
 ## ⭐ Dégradé
 
 ```cpp
@@ -125,6 +133,8 @@ int main()
     image.save("output/gradient.png");
 }
 ```
+
+[![result](./output/gradient.png)](./output/gradient.png)
 
 ## ⭐⭐ Miroir
 
@@ -146,6 +156,8 @@ int main()
     image.save("output/mirror.png");
 }
 ```
+
+[![result](./output/mirror.png)](./output/mirror.png)
 
 ## ⭐⭐ Image bruitée
 
@@ -170,6 +182,8 @@ int main()
 }
 ```
 
+[![result](./output/noise.png)](./output/noise.png)
+
 ## ⭐⭐ Rotation de 90°
 
 ```cpp
@@ -189,6 +203,8 @@ int main()
     rotated_image.save("output/rotated.png");
 }
 ```
+
+[![result](./output/rotated.png)](./output/rotated.png)
 
 ## ⭐⭐ RGB split
 
@@ -221,6 +237,8 @@ int main()
 }
 ```
 
+[![result](./output/split.png)](./output/split.png)
+
 ## ⭐⭐ Luminosité
 
 ```cpp
@@ -237,8 +255,12 @@ int main()
         color.b = std::pow(color.b, a);
         color = glm::clamp(color, glm::vec3{0.0f}, glm::vec3{1.0f});
     }
+
+    image.save("output/brightness.png")
 }
 ```
+
+[![result](./output/brightness.png)](./output/brightness.png)
 
 ## ⭐⭐(⭐) Disque
 
@@ -269,6 +291,8 @@ int main()
     image.save("output/disc.png");
 }
 ```
+
+[![result](./output/disc.png)](./output/disc.png)
 
 ### ⭐⭐⭐ Cercle
 
@@ -306,6 +330,8 @@ int main()
 }
 ```
 
+[![result](./output/circle.png)](./output/circle.png)
+
 ### ⭐⭐ Animation
 
 ```cpp
@@ -340,6 +366,8 @@ int main()
     }
 }
 ```
+
+[![result](./output/animated_circle/ezgif.gif)](./output/animated_circle/ezgif.gif)
 
 ### ⭐⭐⭐ Rosace
 
@@ -387,6 +415,8 @@ int main()
 }
 ```
 
+[![result](./output/rosace.png)](./output/rosace.png)
+
 ## ⭐⭐ Mosaïque
 
 ```cpp
@@ -410,6 +440,8 @@ int main()
     image.save("output/mosaic.png");
 }
 ```
+
+[![result](./output/mosaic.png)](./output/mosaic.png)
 
 ### ⭐⭐⭐⭐ Mosaïque miroir
 
@@ -445,6 +477,8 @@ int main()
     image.save("output/mosaic_mirror.png");
 }
 ```
+
+[![result](./output/mosaic_mirror.png)](./output/mosaic_mirror.png)
 
 ## ⭐⭐⭐ Glitch
 
@@ -505,6 +539,8 @@ int main()
 }
 ```
 
+[![result](./output/glitch.png)](./output/glitch.png)
+
 ## ⭐⭐⭐ Tri de pixels
 
 ```cpp
@@ -543,6 +579,8 @@ int main()
     image.save("output/sorted.png");
 }
 ```
+
+[![result](./output/sorted.png)](./output/sorted.png)
 
 ## ⭐⭐⭐(⭐) Fractale de Mandelbrot
 
@@ -588,6 +626,8 @@ int main() {
 }
 ```
 
+[![result](./output/fractal.png)](./output/fractal.png)
+
 ## ⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab
 
 ```cpp
@@ -595,22 +635,23 @@ int main() {
 #include <cmath>
 #include <iostream>
 
-glm::vec3 linear_to_oklab(const glm::vec3& linear)
+struct Lab {float L; float a; float b;};
+struct RGB {float r; float g; float b;};
+
+RGB oklab_to_linear_srgb(Lab c)
 {
-    float l = 0.4122214708f * linear.r + 0.5363325363f * linear.g + 0.0514459929f * linear.b;
-    float m = 0.2119034982f * linear.r + 0.6806995451f * linear.g + 0.1073969566f * linear.b;
-    float s = 0.0883024619f * linear.r + 0.2817188376f * linear.g + 0.6299787005f * linear.b;
+    float l_ = c.L + 0.3963377774f * c.a + 0.2158037573f * c.b;
+    float m_ = c.L - 0.1055613458f * c.a - 0.0638541728f * c.b;
+    float s_ = c.L - 0.0894841775f * c.a - 1.2914855480f * c.b;
 
-    float l_ = cbrtf(l);
-    float m_ = cbrtf(m);
-    float s_ = cbrtf(s);
+    float l = l_*l_*l_;
+    float m = m_*m_*m_;
+    float s = s_*s_*s_;
 
-    float L = 0.2104542553f * l_ + 0.7936177850f * m_ - 0.0040720468f * s_;
-    float a = 1.9779984951f * l_ - 2.4285922050f * m_ + 0.4505937099f * s_;
-    float b = 0.0259040371f * l_ + 0.7827717662f * m_ - 0.8086757660f * s_;
-
-    return glm::vec3{
-        L,a,b
+    return RGB{
+		+4.0767416621f * l - 3.3077115913f * m + 0.2309699292f * s,
+		-1.2684380046f * l + 2.6097574011f * m - 0.3413193965f * s,
+		-0.0041960863f * l - 0.7034186147f * m + 1.7076147010f * s,
     };
 }
 
@@ -620,48 +661,63 @@ glm::vec3 linear_to_oklab(const glm::vec3& linear)
 0.04045 < S ≤ 1
 ===> L = ((S+0.055)/1.055)^2.4
 */
-glm::vec3 srgb_to_linear(const glm::vec3& srgb) {
-    glm::vec3 linear;
+RGB linear_to_srgb(const RGB& linear) {
+    RGB srgb;
+    float channels[3] = {linear.r, linear.g, linear.b};
     for (int i = 0; i < 3; ++i) {
-        float c = srgb[i];
-        if (c <= 0.04045f) {
-            linear[i] = c * (1.0f / 12.92f);  // Linear section
+        float L = channels[i];
+        if (L <= 0.0031308f) {
+            channels[i] = L * 12.92f;
         } else {
-            linear[i] = powf((c + 0.055f) * (1.0f / 1.055f), 2.4f);  // Exponential section
+            channels[i] = 1.055f * powf(L, 1.0f / 2.4f) - 0.055f;
         }
     }
-    return linear;
+    srgb.r = channels[0];
+    srgb.g = channels[1];
+    srgb.b = channels[2];
+    return srgb;
 }
 
 int main()
 {
-    sil::Image image{300, 200};
-    auto srgb = image;
-    auto linear = image;
-    auto oklab = image;
+    sil::Image lab_srgb{300, 200};
+    auto lab_lrgb = lab_srgb;
 
-    for (int x{0}; x < image.width(); ++x)
+    const Lab red_lab = Lab{0.628, 0.225, 0.126};
+    const Lab green_lab = Lab{0.866, -0.234, 0.179};
+
+    for (int x{0}; x < lab_srgb.width(); ++x)
     {
-        for (int y{0}; y < image.height(); ++y)
+        for (int y{0}; y < lab_srgb.height(); ++y)
         {
-            float ry = static_cast<float>(y) / static_cast<float>(image.height() - 1);
-            float rx = static_cast<float>(x) / static_cast<float>(image.width() - 1);
-            glm::vec3 c = glm::vec3{1.0f - rx, rx, 0.0f};
+            float rx = static_cast<float>(x) / static_cast<float>(lab_srgb.width() - 1);
+            Lab lab_c =
+            Lab{
+                red_lab.L + rx * (green_lab.L - red_lab.L),
+                red_lab.a + rx * (green_lab.a - red_lab.a),
+                red_lab.b + rx * (green_lab.b - red_lab.b)
+            };
             //1 : to linear
-            glm::vec3 linear_c = srgb_to_linear(c);
-            //2 : to oklab
-            glm::vec3 lab_c = linear_to_oklab(linear_c);
+            RGB linear_c = oklab_to_linear_srgb(lab_c);
 
-            srgb.pixel(x, y) = c;
-            linear.pixel(x, y) = linear_c;
-            oklab.pixel(x, y) = lab_c;
+            lab_lrgb.pixel(x, y) = glm::vec3{
+                linear_c.r,linear_c.g,linear_c.b
+            };
+            //2 : to sRGB
+            RGB srgb_c = linear_to_srgb(linear_c);
+
+            lab_srgb.pixel(x, y) = glm::vec3{
+                srgb_c.r,srgb_c.g,srgb_c.b
+            };
         }
     }
-    srgb.save("output/lab_srgb.png");
-    linear.save("output/lab_linear.png");
-    oklab.save("output/lab_oklab.png");
+    lab_lrgb.save("output/lab_linear_rgb.png");
+    lab_srgb.save("output/lab_srgb.png");
 }
 ```
+
+[![result](./output/lab_linear_rgb.png)](./output/lab_linear_rgb.png)
+[![result](./output/lab_srgb.png)](./output/lab_srgb.png)
 
 ## ⭐⭐⭐(⭐) Tramage
 
@@ -743,6 +799,8 @@ int main() {
 }
 ```
 
+[![result](./output/dithering.png)](./output/dithering.png)
+
 ## ⭐⭐⭐(⭐) Normalisation de l'histogramme
 
 ```cpp
@@ -774,6 +832,8 @@ int main()
     image.save("output/histogram.png");
 }
 ```
+
+[![result](./output/histogram.png)](./output/histogram.png)
 
 ## ⭐⭐⭐⭐ Vortex
 
@@ -827,6 +887,8 @@ int main() {
 }
 ```
 
+[![result](./output/vortex.png)](./output/vortex.png)
+
 ## ⭐⭐⭐⭐ Convolutions
 
 ```cpp
@@ -868,6 +930,8 @@ int main()
 }
 ```
 
+[![result](./output/convolution.png)](./output/convolution.png)
+
 ### ⭐ Netteté, Contours, etc.
 
 ```cpp
@@ -908,6 +972,8 @@ int main()
     image.save("output/contours.png");
 }
 ```
+
+[![result](./output/contours.png)](./output/contours.png)
 
 ## ⭐⭐ Filtres séparables
 
@@ -969,11 +1035,16 @@ int main() {
 }
 ```
 
+[![result](./output/separable_filters_x.png)](./output/separable_filters_x.png)
+[![result](./output/separable_filters_xy.png)](./output/separable_filters_xy.png)
+
 ## ⭐⭐ Différence de gaussiennes
 
 ```cpp
 //TODO: > ⭐⭐ Différence de gaussiennes
 ```
+
+[![result](./output/.png)](./output/.png)
 
 ## ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 
@@ -986,6 +1057,8 @@ int main() {
 ```cpp
 //TODO: ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 ```
+
+[![result](./output/.png)](./output/.png)
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
@@ -1116,6 +1189,8 @@ int main() {
     image.save("output/diamond_square.png");
 }
 ```
+
+[![result](./output/diamond_square.png)](./output/diamond_square.png)
 
 ### ⭐⭐ Colorer la height map
 
@@ -1260,9 +1335,11 @@ int main() {
             image.pixel(x, y) = color;
         }
     }
-    image.save("output/diamond_square.png");
+    image.save("output/diamond_square_colored.png");
 }
 ```
+
+[![result](./output/diamond_square_colored.png)](./output/diamond_square_colored.png)
 
 # Custom
 
@@ -1301,6 +1378,8 @@ int main()
     }
 }
 ```
+
+[![result](./output/hatched_animated_circle/ezgif.gif)](./output/hatched_animated_circle/ezgif.gif)
 
 ## ⭐⭐⭐ Colorer la height map selon une image de dégradé
 
@@ -1447,3 +1526,5 @@ int main() {
     image.save("output/diamond_square_colored_with_map.png");
 }
 ```
+
+[![result](./output/diamond_square_colored_with_map.png)](./output/diamond_square_colored_with_map.png)
