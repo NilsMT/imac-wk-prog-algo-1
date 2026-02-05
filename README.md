@@ -24,6 +24,10 @@ Superbe repo où on fait joujou avec des images
 
 # Rapport
 
+L'exercice [⭐ Différence](./EXOS.md#-différence) est un code qui permet d'avoir la différence entre deux images
+
+---
+
 Le résultat de l'exercice custom [⭐⭐ Animation Cercle Hachuré](./EXOS.md#-animation-cercle-hachuré) est due à une erreur où
 j'ai ajouté une valeur à la mauvaise variable.
 
