@@ -1147,7 +1147,7 @@ int main() {
 //TODO: ⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image
 ```
 
-[![](./output/.png)](./output/.png)
+[![](./images/no.png)](./images/no.png)
 
 ## ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 
@@ -1155,7 +1155,7 @@ int main() {
 //TODO: ⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)
 ```
 
-[![](./output/.png)](./output/.png)
+[![](./images/no.png)](./images/no.png)
 
 ## ⭐⭐⭐⭐⭐⭐ Diamond Square
 
