@@ -1,8 +1,5 @@
-![](./images/banner.png)
+[![](./images/banner.png)](./images/banner.png)
 
-# Sommaire
-
-- [Sommaire](#sommaire)
 - [Exos](#exos)
     - [⭐ Ne garder que le vert](#-ne-garder-que-le-vert)
     - [⭐ Échanger les canaux](#-échanger-les-canaux)
