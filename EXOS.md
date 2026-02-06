@@ -39,7 +39,7 @@
     - [⭐ Différence](#-différence)
     - [⭐⭐ Animation Cercle Hachuré](#-animation-cercle-hachuré)
     - [⭐⭐⭐ Colorer la height map selon une image de dégradé](#-colorer-la-height-map-selon-une-image-de-dégradé)
-        - [⭐⭐⭐ Height map stylisée](#-height-map-stylisée)
+        - [⭐⭐ Height map stylisée](#-height-map-stylisée)
 
 # Exos
 
@@ -1820,7 +1820,7 @@ int main() {
 
 [![](./output/diamond_color_map.png)](./output/diamond_color_map.png)
 
-### ⭐⭐⭐ Height map stylisée
+### ⭐⭐ Height map stylisée
 
 ```cpp
 #include <sil/sil.hpp>
