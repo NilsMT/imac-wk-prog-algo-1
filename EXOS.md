@@ -1467,7 +1467,7 @@ const glm::vec3 color1 = glm::vec3{0.f, 0.f, 0.2f}; //dark blue
 const glm::vec3 color2 = glm::vec3{0.f, 0.f, 1.f}; //blue
 const glm::vec3 color3 = glm::vec3{0.f, 1.f, 0.f}; //green
 const glm::vec3 color4 = glm::vec3{0.f, 0.2f, 0.f}; //dark green
-const float treshold1_2 = 0.5f; //between color1 and color2
+const float tr2_3 = 0.5f; //between color2 and color3
 
 //globals (don't touch)
 float mapMin = 0;
@@ -1584,7 +1584,7 @@ int main() {
             v = std::round(v / 0.1f) * 0.1f;//rounding to have less smooth colors
             glm::vec3 color;
 
-            if (v > treshold1_2) {
+            if (v > tr2_3) {
                 color = glm::mix(color3, color4, v);
             } else {
                 color = glm::mix(color1, color2, v);
