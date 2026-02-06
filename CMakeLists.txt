@@ -5,7 +5,7 @@ project(ImageEditor)
 add_executable(${PROJECT_NAME})
 
 # Choose your C++ version
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # Prevents compiler-specific extensions to C++ because they might allow code to compile on your machine but not on other people's machine
 set_target_properties(${PROJECT_NAME} PROPERTIES

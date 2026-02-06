@@ -390,7 +390,7 @@ int main()
 
     for (int i = 0; i < n; ++i)
     {
-        float angle = i * (2 * M_PI / n);
+        float angle = i * (2 * std::numbers::pi_v<float> / n);
         int a = static_cast<int>(ca + r * std::cos(angle));
         int b = static_cast<int>(cb + r * std::sin(angle));
 
@@ -851,7 +851,7 @@ vec2 rotated(vec2 point, vec2 center_of_rotation, float angle)
 
 int main() {
     //config
-    float maxAngle = (4*M_PI); //the max angle a pixel can be rotate too (radians)
+    float maxAngle = (4*std::numbers::pi_v<float>); //the max angle a pixel can be rotate too (radians)
 
     sil::Image image{"images/logo.png"};
     auto vortex = image;
