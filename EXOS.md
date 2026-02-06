@@ -2,43 +2,44 @@
 
 # Sommaire
 
+- [Sommaire](#sommaire)
 - [Exos](#exos)
-    - [⭐ Ne garder que le vert ✅](#-ne-garder-que-le-vert)
-    - [⭐ Échanger les canaux ✅](#-échanger-les-canaux)
-    - [⭐ Noir & Blanc ✅](#-noir--blanc)
-    - [⭐ Négatif ✅](#-négatif)
-    - [⭐ Dégradé ✅](#-dégradé)
-    - [⭐⭐ Miroir ✅](#-miroir)
-    - [⭐⭐ Image bruitée ✅](#-image-bruitée)
-    - [⭐⭐ Rotation de 90° ✅](#-rotation-de-90)
-    - [⭐⭐ RGB split ✅](#-rgb-split)
-    - [⭐⭐ Luminosité ✅](#-luminosité)
-    - [⭐⭐(⭐) Disque ✅](#-disque)
-        - [⭐⭐⭐ Cercle ✅](#-cercle)
-        - [⭐⭐ Animation ✅](#-animation)
-        - [⭐⭐⭐ Rosace ✅](#-rosace)
-    - [⭐⭐ Mosaïque ✅](#-mosaïque)
-        - [⭐⭐⭐⭐ Mosaïque miroir ✅](#-mosaïque-miroir)
-    - [⭐⭐⭐ Glitch ✅](#-glitch)
-    - [⭐⭐⭐ Tri de pixels ✅](#-tri-de-pixels)
-    - [⭐⭐⭐(⭐) Fractale de Mandelbrot ✅](#-fractale-de-mandelbrot)
-    - [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab ✅](#-dégradés-dans-lespace-de-couleur-lab)
-    - [⭐⭐⭐(⭐) Tramage ✅](#-tramage)
-    - [⭐⭐⭐(⭐) Normalisation de l'histogramme ✅](#-normalisation-de-lhistogramme)
-    - [⭐⭐⭐⭐ Vortex ✅](#-vortex)
-    - [⭐⭐⭐⭐ Convolutions ✅](#-convolutions)
-        - [⭐ Netteté, Contours, etc. ✅](#-netteté-contours-etc)
-        - [⭐⭐ Filtres séparables ✅](#-filtres-séparables)
-        - [⭐⭐ Différence de gaussiennes ✅](#-différence-de-gaussiennes)
-    - [⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image ✅](#-k-means--trouver-les-couleurs-les-plus-présentes-dans-une-image)
-    - [⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile) ✅](#-filtre-de-kuwahara-effet-peinture-à-lhuile)
-    - [⭐⭐⭐⭐⭐⭐ Diamond Square ✅](#-diamond-square)
-        - [⭐⭐ Colorer la height map ✅](#-colorer-la-height-map)
+    - [⭐ Ne garder que le vert](#-ne-garder-que-le-vert)
+    - [⭐ Échanger les canaux](#-échanger-les-canaux)
+    - [⭐ Noir \& Blanc](#-noir--blanc)
+    - [⭐ Négatif](#-négatif)
+    - [⭐ Dégradé](#-dégradé)
+    - [⭐⭐ Miroir](#-miroir)
+    - [⭐⭐ Image bruitée](#-image-bruitée)
+    - [⭐⭐ Rotation de 90°](#-rotation-de-90)
+    - [⭐⭐ RGB split](#-rgb-split)
+    - [⭐⭐ Luminosité](#-luminosité)
+    - [⭐⭐(⭐) Disque](#-disque)
+        - [⭐⭐⭐ Cercle](#-cercle)
+        - [⭐⭐ Animation](#-animation)
+        - [⭐⭐⭐ Rosace](#-rosace)
+    - [⭐⭐ Mosaïque](#-mosaïque)
+        - [⭐⭐⭐⭐ Mosaïque miroir](#-mosaïque-miroir)
+    - [⭐⭐⭐ Glitch](#-glitch)
+    - [⭐⭐⭐ Tri de pixels](#-tri-de-pixels)
+    - [⭐⭐⭐(⭐) Fractale de Mandelbrot](#-fractale-de-mandelbrot)
+    - [⭐⭐⭐(⭐) Dégradés dans l'espace de couleur Lab](#-dégradés-dans-lespace-de-couleur-lab)
+    - [⭐⭐⭐(⭐) Tramage](#-tramage)
+    - [⭐⭐⭐(⭐) Normalisation de l'histogramme](#-normalisation-de-lhistogramme)
+    - [⭐⭐⭐⭐ Vortex](#-vortex)
+    - [⭐⭐⭐⭐ Convolutions](#-convolutions)
+        - [⭐ Netteté, Contours, etc.](#-netteté-contours-etc)
+    - [⭐⭐ Filtres séparables](#-filtres-séparables)
+    - [⭐⭐ Différence de gaussiennes](#-différence-de-gaussiennes)
+    - [⭐⭐⭐⭐⭐ K-means : trouver les couleurs les plus présentes dans une image](#-k-means--trouver-les-couleurs-les-plus-présentes-dans-une-image)
+    - [⭐⭐⭐⭐⭐ Filtre de Kuwahara (effet peinture à l'huile)](#-filtre-de-kuwahara-effet-peinture-à-lhuile)
+    - [⭐⭐⭐⭐⭐⭐ Diamond Square](#-diamond-square)
+        - [⭐⭐ Colorer la height map](#-colorer-la-height-map)
 - [Custom](#custom)
-    - [⭐ Différence ✅](#-différence)
-    - [⭐⭐ Animation Cercle Hachuré ✅](#-animation-cercle-hachuré)
-    - [⭐⭐⭐ Colorer la height map selon une image de dégradé ✅](#-colorer-la-height-map-selon-une-image-de-dégradé)
-        - [⭐⭐⭐ Height map stylisée ✅](#-height-map-stylisée)
+    - [⭐ Différence](#-différence)
+    - [⭐⭐ Animation Cercle Hachuré](#-animation-cercle-hachuré)
+    - [⭐⭐⭐ Colorer la height map selon une image de dégradé](#-colorer-la-height-map-selon-une-image-de-dégradé)
+        - [⭐⭐⭐ Height map stylisée](#-height-map-stylisée)
 
 # Exos
 
@@ -1829,15 +1830,85 @@ int main() {
 #include <iostream>
 
 //config (you can change these)
-const int n = 8;
+const int n = 9;
 const float hMin = 1.f;
 const float hMax = 8.f;
+float alpha = 0.5f; //how much the dithering should affect the final image (%)
+float trs = 0.675f; //threshold for dithering (high = brighter)
+int level = 2; //dithering level
 
 //globals (don't touch)
 float mapMin = 0.f;
 float mapMax = 0.f;
 const int mapSize = pow(2, n) + 1;
 using arrayT = std::array<std::array<float, mapSize>, mapSize>;
+using bayerT = std::vector<std::vector<float>>;
+
+bayerT generateBayerLevel(int n) {
+    if (n == 1) {
+        //bayer at level 0
+        return {
+            { -0.5f,  0.5f },
+            {  1.5f, -1.5f }
+        };
+    }
+
+    bayerT prev = generateBayerLevel(n - 1);
+    int size = prev.size();
+    int newSize = size * 2;
+
+    bayerT result(newSize, std::vector<float>(newSize));
+
+    for (int y = 0; y < size; ++y) {
+        for (int x = 0; x < size; ++x) {
+            float v = prev[y][x];
+
+            //recursion
+            result[y][x] = 4.0f * v + 0.0f;
+            result[y][x + size] = 4.0f * v + 2.0f;
+            result[y + size][x] = 4.0f * v + 3.0f;
+            result[y + size][x + size] = 4.0f * v + 1.0f;
+        }
+    }
+
+    return result;
+}
+
+sil::Image dithering(sil::Image image, float trs = 0.675f, int level = 2) {
+    for (glm::vec3& color : image.pixels())
+    {
+        float c = color.r * 0.3 + color.g * 0.59 + color.b * 0.11;
+
+        color = glm::vec3{c};
+    }
+
+    //2 : dithering
+    const auto bayer = generateBayerLevel(level);
+    float maxB = pow(bayer.size(), 2);
+
+    for (int x = 0; x < image.width(); ++x)
+    {
+        for (int y = 0; y < image.height(); ++y) {
+
+            const float brt = image.pixel(x,y).r;
+
+            //bayer value
+            float b = bayer[y % bayer.size()][x % bayer.size()];
+            b = (b + 0.5f) / maxB; //normalize to [0,1]
+
+            const float c = brt > trs - b
+                ? 1.0
+                : 0.0;
+
+            image.pixel(x,y) = glm::vec3{c};
+        }
+
+    }
+
+    return image;
+}
+
+/////////////////////////////////////
 
 void fillArr(arrayT& arr, float value) {
     for (auto& row : arr) {
@@ -1855,8 +1926,6 @@ void updateMapMinMax(float value) {
         mapMax = value;
     }
 }
-
-/////////////////////////////////////
 
 void square_step(arrayT& arr, int size, int half, float r) {
     for (int iy = 0; iy < mapSize - 1; iy += size) {
@@ -1934,7 +2003,7 @@ arrayT diamond_square_algorithm(float r) {
     return height_map;
 }
 
-int main() {
+sil::Image diamond_square() {
     sil::Image image{mapSize, mapSize};
     sil::Image color_map{"images/color_map.png"};
     float pre = 1.f / color_map.width();
@@ -1959,6 +2028,20 @@ int main() {
             color = color_map.pixel(color_x, 0);
 
             image.pixel(x, y) = color;
+        }
+    }
+    return image;
+}
+
+int main() {
+    sil::Image image = diamond_square();
+    sil::Image dithered = dithering(image, trs, level); //dithered act as luminosity map
+    for (int x = 0; x < image.width(); ++x) {
+        for (int y = 0; y < image.height(); ++y) {
+
+            glm::vec3 color = image.pixel(x, y);
+            float d = dithered.pixel(x, y).r;
+            image.pixel(x, y) = glm::mix(color, color * d, alpha);
         }
     }
     image.save("output/diamond_color_dithering.png");

@@ -6,9 +6,9 @@ Superbe repo où on fait joujou avec des images
 
 # Arborescence
 
-> ℹ️ le code de chaque exo et leurs images associées se trouve dans [EXOS.md](./EXOS.md)
-
-> ℹ️ le "rapport" correspond à ce fichier
+> ℹ️ le code de chaque exo et leurs images associées se trouve dans [EXOS.md](./EXOS.md).
+>
+> Je conseille également d'utilisé l'`outline` sur le panneau de gauche de VS Code pour naviguer
 
 ```
 📁 build            : fichiers de build (gitignored)
