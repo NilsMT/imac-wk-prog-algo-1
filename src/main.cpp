@@ -1,84 +1,80 @@
 #include <sil/sil.hpp>
-#include <array>
+#include <glm/glm.hpp>
+#include <vector>
+#include <cmath>
+#include "random.hpp"
 
+//based on https://www.geeksforgeeks.org/machine-learning/k-means-clustering-introduction/
 int main()
 {
     sil::Image image{"images/photo.jpg"};
     auto base = image;
+    //config
+    const int k = 16; //number of centroids (colors)
+    const int max_iters = 10; //how much tries to update centroids (high = more accurate)
 
-    for (int x = 0; x < image.width(); ++x)
+    const int w = image.width();
+    const int h = image.height();
+
+    //pick initialize k random centroids
+    std::vector<glm::vec3> centroids(k);
+    for (int i = 0; i < k; ++i)
     {
-        for (int y = 0; y < image.height(); ++y)
-        {
-            std::array<glm::vec3, 4> regions{
-                glm::vec3{0.f}, glm::vec3{0.f}, glm::vec3{0.f}, glm::vec3{0.f}
-            };
-            std::array<float, 4> counts{
-                0.f, 0.f, 0.f, 0.f
-            };
-
-            //mean accumulation on 5x5 (-2 to 2 based on center)
-            for (int kx = -2; kx <= 2; ++kx)
-            {
-                for (int ky = -2; ky <= 2; ++ky)
-                {
-                    int sx = glm::clamp(x + kx, 0, image.width() - 1);
-                    int sy = glm::clamp(y + ky, 0, image.height() - 1);
-                    glm::vec3 c = base.pixel(sx, sy);
-
-                    int r =
-                        (kx <= 0 && ky <= 0) ? 
-                            0 : (kx >  0 && ky <= 0) ? 
-                                1 : (kx <= 0 && ky >  0) ? 
-                                    2 : 3;
-                    
-                    regions[r] += c; //+color
-                    counts[r]  += 1.f; //+1 count
-                }
-            }
-
-            std::array<glm::vec3, 4> means;
-            for (int i = 0; i < 4; ++i)
-                means[i] = regions[i] / counts[i];
-
-            std::array<float, 4> dev{0.f, 0.f, 0.f, 0.f};
-
-            //deviation (https://www.geeksforgeeks.org/maths/standard-deviation-formula/)
-            for (int kx = -2; kx <= 2; ++kx)
-            {
-                for (int ky = -2; ky <= 2; ++ky)
-                {
-                    int r =
-                        (kx <= 0 && ky <= 0) ? 0 :
-                        (kx >  0 && ky <= 0) ? 1 :
-                        (kx <= 0 && ky >  0) ? 2 : 3;
-
-                    int sx = glm::clamp(x + kx, 0, image.width() - 1);
-                    int sy = glm::clamp(y + ky, 0, image.height() - 1);
-                    glm::vec3 c = base.pixel(sx, sy);
-
-                    dev[r] += glm::distance(c, means[r]);
-                }
-            }
-
-            //select smallest dev (= result)
-            float minDev = sqrt(3.f);
-            glm::vec3 res = image.pixel(x, y);
-
-            for (int i = 0; i < 4; ++i)
-            {
-                dev[i] /= counts[i];
-
-                if (dev[i] < minDev)
-                {
-                    minDev = dev[i];
-                    res = means[i];
-                }
-            }
-
-            image.pixel(x, y) = res;
-        }
+        int x = random_int(0, w - 1);
+        int y = random_int(0, h - 1);
+        centroids[i] = base.pixel(x, y);
     }
 
-    image.save("output/kuwahara.png");
+    //iterate k-means until max_iters
+    for (int iter = 0; iter < max_iters; ++iter)
+    {
+        std::vector<glm::vec3> sums(k, glm::vec3{0.f});
+        std::vector<int> counts(k, 0);
+
+        //pixels assigned to closest centroid
+        for (int y = 0; y < h; ++y)
+        for (int x = 0; x < w; ++x)
+        {
+            glm::vec3 c = base.pixel(x, y);
+            float minDist = sqrt(3.f);  //max distance is (1,1,1) to (0,0,0)
+            int best = 0;
+            for (int i = 0; i < k; ++i)
+            {
+                float d = glm::distance(c, centroids[i]);
+                if (d < minDist)
+                {
+                    minDist = d;
+                    best = i;
+                }
+            }
+            sums[best] += c;
+            counts[best] += 1;
+        }
+
+        //update centroids
+        for (int i = 0; i < k; ++i)
+            if (counts[i] > 0)
+                centroids[i] = sums[i] / float(counts[i]);
+    }
+
+    //recolor image using nearest centroid
+    for (int y = 0; y < h; ++y)
+    for (int x = 0; x < w; ++x)
+    {
+        glm::vec3 c = base.pixel(x, y);
+        float minDist = std::numeric_limits<float>::max();
+        int best = 0;
+        for (int i = 0; i < k; ++i)
+        {
+            float d = glm::distance(c, centroids[i]);
+            if (d < minDist)
+            {
+                minDist = d;
+                best = i;
+            }
+        }
+        image.pixel(x, y) = centroids[best];
+    }
+
+    image.save("output/kmeans.png");
 }
