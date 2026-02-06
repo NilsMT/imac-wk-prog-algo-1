@@ -12,7 +12,7 @@ Superbe repo où on fait joujou avec des images
 
 > ℹ️ le code de chaque exo et leurs images associées se trouve dans [EXOS.md](./EXOS.md).
 >
-> Je conseille également d'utilisé l'`outline` sur le panneau de gauche de VS Code pour naviguer
+> Je conseille également d'utilisé l'`outline` sur le panneau de gauche de VS Code pour naviguer dedans
 
 ```
 📁 build            : fichiers de build (gitignored)
